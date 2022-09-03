@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const monk = require('monk');
+const rateLimit = require('express-rate-limit');
 
 
 const app = express();
@@ -11,7 +12,9 @@ const broTweets = db.get('broTweets'); //collection inside our database
 
 
 app.use(cors());
+
 app.use(express.json());
+
 
 app.get('/',(req,res)=>{
     res.json({
@@ -31,6 +34,11 @@ function isValidBroTweets (broTweets){
     return broTweets.name && broTweets.name.toString().trim() !== '' && 
     broTweets.content && broTweets.content.toString().trim() !== '';
 }
+
+app.use(rateLimit({
+    windowMs:30*1000,
+    max:1
+}))
 
 app.post('/brotweets',(req,res)=>{
 

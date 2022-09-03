@@ -32,7 +32,10 @@ form.addEventListener('submit',(event)=>{
     }).then(response => response.json()).then(createdBroTweets=>{
         console.log('data on client',createdBroTweets)
         form.reset();
-        form.style.display = '';
+        setTimeout(()=>{
+
+            form.style.display = '';
+        },30000)
         listAllBroTweets()
         loadingElement.style.display = 'none';
     })
