@@ -19,6 +19,13 @@ app.get('/',(req,res)=>{
     })
 })
 
+app.get('/brotweets',(req,res)=>{
+    broTweets
+    .find()
+    .then(broTweets =>{
+        res.json(broTweets);
+    });
+});
 
 function isValidBroTweets (broTweets){
     return broTweets.name && broTweets.name.toString().trim() !== '' && 
