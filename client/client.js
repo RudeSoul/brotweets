@@ -33,12 +33,14 @@ form.addEventListener('submit',(event)=>{
         console.log('data on client',createdBroTweets)
         form.reset();
         form.style.display = '';
+        listAllBroTweets()
         loadingElement.style.display = 'none';
     })
 });
 
 
 function listAllBroTweets(){
+    broTweetElement.innerHTML='';
     fetch(API_URL,{
         method:'get', //you dont need to specify this but its ok
     })
