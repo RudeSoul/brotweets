@@ -8,7 +8,7 @@ const app = express();
 
 const db = monk('localhost/broTweetsDb');
 
-const broTweets = db.get('broTweets'); //collection inside our database
+const broTweets = db.get(process.env.MONGO_URI || 'broTweets'); //collection inside our database
 
 
 app.use(cors());
